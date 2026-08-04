@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { motion } from "motion/react";
 import { githubUsername, type ContributionDay } from "@/data/portfolio";
 import CardShell from "@/components/card-shell";
 import SectionLabel from "@/components/section-label";
@@ -11,12 +12,37 @@ type ContributionResponse = {
 };
 
 function levelClass(level: number, isDark: boolean) {
-  if (level === 0) return isDark ? "bg-violet-950/70" : "bg-violet-100";
-  if (level === 1) return isDark ? "bg-violet-800" : "bg-violet-200";
-  if (level === 2) return isDark ? "bg-violet-700" : "bg-violet-300";
-  if (level === 3) return isDark ? "bg-violet-600" : "bg-violet-400";
-  return isDark ? "bg-violet-400" : "bg-violet-600";
+  if (level === 0) {
+    return isDark
+      ? "bg-zinc-850/60 bg-zinc-800/50 border border-zinc-800/80"
+      : "bg-zinc-100 border border-zinc-200/80";
+  }
+  if (level === 1) {
+    return isDark ? "bg-emerald-950/90 text-emerald-300 border border-emerald-800/40" : "bg-emerald-200";
+  }
+  if (level === 2) {
+    return isDark ? "bg-emerald-700/90" : "bg-emerald-300";
+  }
+  if (level === 3) {
+    return isDark ? "bg-emerald-500" : "bg-emerald-400";
+  }
+  return isDark ? "bg-emerald-400" : "bg-emerald-600";
 }
+
+const MONTH_NAMES = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 export default function GitHubActivityCard({
   theme,
@@ -37,11 +63,17 @@ export default function GitHubActivityCard({
         const data = (await response.json()) as ContributionResponse;
         if (mounted) {
           const contributions = data.contributions ?? [];
-          const total = contributions.reduce(
+          // Ensure we take the last 52 weeks (364 days) to prevent grid overflow
+          const trimmedContributions =
+            contributions.length > 364
+              ? contributions.slice(contributions.length - 364)
+              : contributions;
+
+          const total = trimmedContributions.reduce(
             (sum, day) => sum + (typeof day.count === "number" ? day.count : 0),
             0,
           );
-          setActivity(contributions);
+          setActivity(trimmedContributions);
           setActivityTotal(total);
         }
       } catch {
@@ -68,42 +100,76 @@ export default function GitHubActivityCard({
     return buckets;
   }, [activity]);
 
+  // Compute month positions dynamically for accurate header placement
+  const monthLabels = useMemo(() => {
+    if (weeks.length === 0) return [];
+    const labels: { name: string; weekIndex: number }[] = [];
+    let lastMonth = -1;
+
+    weeks.forEach((week, weekIndex) => {
+      const firstDay = week[0];
+      if (firstDay?.date) {
+        const dateObj = new Date(firstDay.date);
+        const monthNum = dateObj.getMonth();
+        if (monthNum !== lastMonth) {
+          labels.push({ name: MONTH_NAMES[monthNum], weekIndex });
+          lastMonth = monthNum;
+        }
+      }
+    });
+    return labels;
+  }, [weeks]);
+
   const isDark = theme === "dark";
+  const numWeeks = weeks.length || 52;
 
   return (
     <CardShell id="github" theme={theme} className="rounded-[1.35rem]">
       <SectionLabel theme={theme}>GitHub Activity</SectionLabel>
-      <h2 className="mt-2 text-lg font-semibold tracking-tight text-zinc-900 sm:text-xl dark:text-zinc-100">
-        Last year on GitHub
-      </h2>
+      <div className="mt-2 flex items-center justify-between">
+        <h2 className="text-lg font-semibold tracking-tight text-zinc-900 sm:text-xl dark:text-zinc-100">
+          Last year on GitHub
+        </h2>
+        <a
+          href={`https://github.com/${githubUsername}`}
+          target="_blank"
+          rel="noreferrer"
+          className="text-xs font-medium text-zinc-500 hover:text-violet-500 transition-colors dark:text-zinc-400 dark:hover:text-violet-400"
+        >
+          @{githubUsername} ↗
+        </a>
+      </div>
 
-      <div className="mt-4 overflow-x-auto">
-        <div className="mb-2 flex min-w-[520px] justify-between text-[10px] font-medium text-zinc-500 sm:min-w-0 sm:text-xs dark:text-zinc-400">
-          {[
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-          ].map((label) => (
-            <span key={label}>{label}</span>
+      <div className="mt-4 overflow-x-auto pb-1">
+        {/* Month Headers */}
+        <div
+          className="relative mb-2 h-4 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"
+          style={{ minWidth: "620px" }}
+        >
+          {monthLabels.map((m) => (
+            <span
+              key={`${m.name}-${m.weekIndex}`}
+              className="absolute transform -translate-x-1/2"
+              style={{
+                left: `${(m.weekIndex / numWeeks) * 100}%`,
+              }}
+            >
+              {m.name}
+            </span>
           ))}
         </div>
 
+        {/* Heatmap Grid */}
         <div
-          className="grid min-w-[520px] gap-0.5 rounded-2xl border border-zinc-200 bg-zinc-50 p-2 dark:border-white/10 dark:bg-zinc-950/35 sm:min-w-0 sm:p-3"
-          style={{ gridTemplateColumns: "repeat(52, minmax(0, 1fr))" }}
+          className="grid gap-1 rounded-2xl border border-zinc-200 bg-zinc-50/70 p-3 dark:border-white/10 dark:bg-zinc-950/50"
+          style={{
+            gridTemplateColumns: `repeat(${numWeeks}, minmax(0, 1fr))`,
+            minWidth: "620px",
+          }}
         >
           {loading
             ? Array.from({ length: 52 }).map((_, columnIndex) => (
-                <div key={columnIndex} className="grid grid-rows-7 gap-0.5">
+                <div key={columnIndex} className="grid grid-rows-7 gap-1">
                   {Array.from({ length: 7 }).map((__, rowIndex) => (
                     <div
                       key={rowIndex}
@@ -113,18 +179,21 @@ export default function GitHubActivityCard({
                 </div>
               ))
             : weeks.map((week, weekIndex) => (
-                <div key={weekIndex} className="grid grid-rows-7 gap-0.5">
+                <div key={weekIndex} className="grid grid-rows-7 gap-1">
                   {Array.from({ length: 7 }).map((__, dayIndex) => {
                     const day = week[dayIndex];
+                    const level = day?.level ?? 0;
                     return (
-                      <div
+                      <motion.div
                         key={day?.date ?? `${weekIndex}-${dayIndex}`}
+                        whileHover={{ scale: 1.35, zIndex: 10 }}
+                        transition={{ duration: 0.1 }}
                         title={
                           day
-                            ? `${day.count} contributions on ${day.date}`
+                            ? `${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`
                             : "No data"
                         }
-                        className={`aspect-square w-full rounded-[3px] transition duration-150 hover:scale-110 ${levelClass(day?.level ?? 0, isDark)}`}
+                        className={`aspect-square w-full rounded-[3px] cursor-pointer transition-colors duration-200 ${levelClass(level, isDark)}`}
                       />
                     );
                   })}
@@ -132,18 +201,19 @@ export default function GitHubActivityCard({
               ))}
         </div>
 
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-[11px] text-zinc-600 sm:text-sm dark:text-zinc-400">
-          <p>
+        {/* Footer Summary */}
+        <div className="mt-3.5 flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-600 dark:text-zinc-400">
+          <p className="font-medium">
             {loading
               ? "Loading contributions..."
-              : `${activityTotal} contributions in the last year`}
+              : `${activityTotal.toLocaleString()} contributions in the last year`}
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 text-[11px]">
             <span>Less</span>
             {[0, 1, 2, 3, 4].map((level) => (
               <span
                 key={level}
-                className={`h-2.5 w-2.5 rounded-sm ${levelClass(level, isDark)}`}
+                className={`h-3 w-3 rounded-[3px] ${levelClass(level, isDark)}`}
               />
             ))}
             <span>More</span>

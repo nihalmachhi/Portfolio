@@ -7,6 +7,8 @@ import CommandPalette from "@/components/command-palette";
 import { ThemeProvider } from "@/context/theme-context";
 import { playThemeSwitchSound } from "@/lib/utils";
 
+import PageTransition from "@/components/page-transition";
+
 function readStoredTheme(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
   const stored = localStorage.getItem("portfolio-theme");
@@ -54,7 +56,7 @@ export default function PortfolioShell({
           onToggleTheme={onToggleTheme}
           onOpenSearch={() => setSearchOpen(true)}
         />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer theme={theme} />
         <CommandPalette
           open={searchOpen}
