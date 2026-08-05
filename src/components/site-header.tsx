@@ -6,7 +6,8 @@ import { motion } from "motion/react";
 import { Copy, Check, Mail, Code2, Terminal, Globe } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { SiCodechef, SiCodeforces, SiHackerrank, SiKaggle, SiLeetcode } from "react-icons/si";
-import { heroProfile, profileImage, socialLinks } from "@/data/portfolio";
+import profilePhoto from "@/assets/dp.jpeg";
+import { heroProfile, socialLinks } from "@/data/portfolio";
 import Tooltip from "@/components/tooltip";
 
 function XIcon({ className = "h-4 w-4 sm:h-[18px] sm:w-[18px]" }: Readonly<{ className?: string }>) {
@@ -94,7 +95,7 @@ export default function SiteHeader({
           className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 sm:h-20 sm:w-20 dark:border-white/10 dark:bg-zinc-800"
         >
           <Image
-            src={profileImage}
+            src={profilePhoto}
             alt={heroProfile.name}
             fill
             priority
