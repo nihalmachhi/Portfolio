@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { githubUsername, type ContributionDay } from "@/data/portfolio";
 import CardShell from "@/components/card-shell";
 import SectionLabel from "@/components/section-label";
+import Tooltip from "@/components/tooltip";
 
 type ContributionResponse = {
   total: number;
@@ -140,7 +141,7 @@ export default function GitHubActivityCard({
         </a>
       </div>
 
-      <div className="mt-4 overflow-x-auto pb-1">
+      <div className="mt-4 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {/* Month Headers */}
         <div
           className="relative mb-2 h-4 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"
@@ -184,17 +185,16 @@ export default function GitHubActivityCard({
                     const day = week[dayIndex];
                     const level = day?.level ?? 0;
                     return (
-                      <motion.div
+                      <Tooltip
                         key={day?.date ?? `${weekIndex}-${dayIndex}`}
-                        whileHover={{ scale: 1.35, zIndex: 10 }}
-                        transition={{ duration: 0.1 }}
-                        title={
-                          day
-                            ? `${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`
-                            : "No data"
-                        }
-                        className={`aspect-square w-full rounded-[3px] cursor-pointer transition-colors duration-200 ${levelClass(level, isDark)}`}
-                      />
+                        content={day ? `${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}` : "No data"}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.35, zIndex: 10 }}
+                          transition={{ duration: 0.1 }}
+                          className={`aspect-square w-full rounded-[3px] cursor-pointer transition-colors duration-200 ${levelClass(level, isDark)}`}
+                        />
+                      </Tooltip>
                     );
                   })}
                 </div>

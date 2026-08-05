@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Copy, Check, Mail, Code2, Terminal, Globe } from "lucide-react";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { SiCodechef, SiCodeforces, SiHackerrank, SiKaggle, SiLeetcode } from "react-icons/si";
 import { heroProfile, profileImage, socialLinks } from "@/data/portfolio";
 import Tooltip from "@/components/tooltip";
 
@@ -62,20 +64,21 @@ export default function SiteHeader({
     switch (label.toLowerCase()) {
       case "x":
       case "twitter":
-        return <XIcon className={iconClass} />;
+        return <FaXTwitter className={`${iconClass} text-black dark:text-white`} />;
       case "linkedin":
-        return <LinkedInIcon className={iconClass} />;
+        return <FaLinkedin className={`${iconClass} text-[#0a66c2]`} />;
       case "github":
-        return <GithubIcon className={iconClass} />;
+        return <FaGithub className={`${iconClass} text-zinc-800 dark:text-zinc-100`} />;
       case "leetcode":
-        return <LeetCodeIcon className={iconClass} />;
+        return <SiLeetcode className={`${iconClass} text-[#ffa116]`} />;
       case "codechef":
+        return <SiCodechef className={`${iconClass} text-[#5b4638] dark:text-[#c8aa8a]`} />;
       case "codeforces":
-        return <CodeforcesIcon className={iconClass} />;
+        return <SiCodeforces className={iconClass} />;
       case "hackerrank":
-        return <Code2 className={iconClass} strokeWidth={1.75} />;
+        return <SiHackerrank className={`${iconClass} text-[#00b67a]`} />;
       case "kaggle":
-        return <KaggleIcon className={iconClass} />;
+        return <SiKaggle className={`${iconClass} text-[#20beff]`} />;
       default:
         return <Globe className={iconClass} strokeWidth={1.75} />;
     }

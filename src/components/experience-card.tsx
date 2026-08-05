@@ -18,7 +18,7 @@ export default function ExperienceCard({
         {experiences.map((item) => (
           <article
             key={item.title}
-            className="grid gap-3 sm:grid-cols-[1fr_auto] sm:gap-8"
+            className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_14rem] sm:gap-8"
           >
             <div>
               <div className="flex flex-wrap items-center gap-2">
@@ -38,7 +38,7 @@ export default function ExperienceCard({
                 {item.bullets.map((bullet) => (
                   <li
                     key={bullet}
-                    className={`text-sm leading-7 ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
+                    className={`whitespace-nowrap text-xs leading-7 sm:text-sm ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
                   >
                     • {bullet}
                   </li>
@@ -49,10 +49,10 @@ export default function ExperienceCard({
             <div
               className={`text-left text-sm sm:text-right sm:text-base ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
             >
-              <p className="font-medium text-zinc-700 dark:text-zinc-300">
+              <p className="whitespace-nowrap font-medium text-zinc-700 dark:text-zinc-300">
                 {item.period}
               </p>
-              <p className="mt-1">{item.location}</p>
+              <p className="mt-1 whitespace-nowrap">{item.location}</p>
             </div>
           </article>
         ))}

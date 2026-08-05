@@ -96,45 +96,32 @@ export function InspirationPageContent() {
         Back home
       </Link>
 
-      <CardShell theme={theme}>
+      <CardShell theme={theme} className="border-t-0 pt-0">
         <SectionLabel theme={theme}>Inspiration</SectionLabel>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-100">
+        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
           People & ideas that shaped my path
         </h1>
+        <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-600 sm:text-base dark:text-zinc-400">A small archive of builders and teachers whose work keeps me curious, practical, and optimistic.</p>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="mt-8 border-t border-zinc-200 dark:border-zinc-800">
           {inspirationPeople.map((person) => (
             <a
               key={person.name}
               href={person.href}
               target="_blank"
               rel="noreferrer"
-              className={`group rounded-2xl border p-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-md ${
-                isDark
-                  ? "border-white/10 bg-zinc-950/35 hover:border-violet-400/30"
-                  : "border-zinc-200 bg-zinc-50 hover:border-violet-200"
-              }`}
+              className="group flex items-start justify-between gap-5 border-b border-zinc-200 py-5 transition-colors hover:bg-zinc-100/70 dark:border-zinc-800 dark:hover:bg-white/[0.03] sm:px-2"
             >
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-100 text-sm font-bold text-violet-700 dark:bg-violet-500/20 dark:text-violet-300">
-                  {person.name.charAt(0)}
-                </div>
-                <ArrowUpRight
-                  size={14}
-                  className="text-zinc-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                />
+              <div className="min-w-0">
+                <p className="font-mono text-[10px] uppercase tracking-wider text-violet-600 dark:text-violet-400">{person.role}</p>
+                <h3 className="mt-1 font-medium text-zinc-900 dark:text-zinc-100">
+                  {person.name}
+                </h3>
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-zinc-600 dark:text-zinc-400">
+                  {person.blurb}
+                </p>
               </div>
-              <h3 className="mt-3 font-semibold text-zinc-900 dark:text-zinc-100">
-                {person.name}
-              </h3>
-              <p className="text-xs text-violet-600 dark:text-violet-400">
-                {person.role}
-              </p>
-              <p
-                className={`mt-2 text-sm leading-7 ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
-              >
-                {person.blurb}
-              </p>
+              <ArrowUpRight size={16} className="mt-1 shrink-0 text-zinc-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           ))}
         </div>

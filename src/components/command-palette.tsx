@@ -25,11 +25,16 @@ export default function CommandPalette({
 
   useEffect(() => {
     if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") handleClose();
     };
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [open, handleClose]);
 
   const filtered = useMemo(() => {
@@ -97,7 +102,7 @@ export default function CommandPalette({
           </button>
         </div>
 
-        <div className="max-h-[50vh] overflow-y-auto p-2">
+        <div className="max-h-[50vh] overflow-y-auto p-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {groups.length === 0 ? (
             <p className="px-3 py-6 text-center text-sm text-zinc-500">
               No results found.

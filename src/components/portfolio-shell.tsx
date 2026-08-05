@@ -54,7 +54,7 @@ export default function PortfolioShell({
           onToggleTheme={onToggleTheme}
           onOpenSearch={() => setSearchOpen(true)}
         />
-        {children}
+        <div className="pt-[68px]">{children}</div>
         <Footer theme={theme} />
         <CommandPalette
           open={searchOpen}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Moon, Search, Sun } from "lucide-react";
@@ -16,9 +17,24 @@ export default function Navbar({
   onOpenSearch: () => void;
 }>) {
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/80 px-4 py-3 backdrop-blur-md sm:px-6 lg:px-8 dark:bg-zinc-950/80">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 w-full px-4 py-3 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 sm:px-6 lg:px-8",
+        isScrolled
+          ? "border-b border-zinc-200/80 bg-white/80 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/75"
+          : "border-b border-transparent bg-transparent",
+      )}
+    >
       <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 py-1">
         <nav className="flex items-center gap-3 overflow-x-auto text-sm text-zinc-500 sm:gap-6 dark:text-zinc-400">
           {navItems.map((item) => (

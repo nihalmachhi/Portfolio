@@ -213,7 +213,7 @@ export const education: Education[] = [
   {
     degree: "SSC — 10th",
     org: "Sardar Vallabhbhai Vidhyalaya",
-    period: "Completed",
+    period: "2021 - 2022",
     location: "Gujarat, India",
     score: "56%",
   },
@@ -541,7 +541,7 @@ export const searchItems: SearchItem[] = [
     href: "/#hackathons",
   },
   { id: "blog", label: "Blog Preview", group: "Sections", href: "/#blog" },
-  ...projects.map((p) => ({
+  ...projects.filter((p) => p.name !== "Portfolio" && p.name !== "Hackathon101").map((p) => ({
     id: `project-${p.name}`,
     label: p.name,
     group: "Projects",

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import CardShell from "@/components/card-shell";
 import HoverPreviewLink from "@/components/hover-preview-link";
 import { aboutPreviewLinks, socialLinks } from "@/data/portfolio";
@@ -117,20 +116,6 @@ export default function AboutSection({
           .
         </p>
 
-        <div className="flex items-center justify-center gap-2 pt-1 sm:pt-2">
-          <motion.span
-            whileHover={{ scale: 1.35 }}
-            className="h-2.5 w-2.5 rounded-full bg-[#ff5f57] shadow-sm"
-          />
-          <motion.span
-            whileHover={{ scale: 1.35 }}
-            className="h-2.5 w-2.5 rounded-full bg-[#febc2e] shadow-sm"
-          />
-          <motion.span
-            whileHover={{ scale: 1.35 }}
-            className="h-2.5 w-2.5 rounded-full bg-[#28c840] shadow-sm"
-          />
-        </div>
       </div>
     </CardShell>
   );
