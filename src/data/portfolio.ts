@@ -541,7 +541,7 @@ export const searchItems: SearchItem[] = [
     href: "/#hackathons",
   },
   { id: "blog", label: "Blog Preview", group: "Sections", href: "/#blog" },
-  ...projects.filter((p) => p.name !== "Portfolio" && p.name !== "Hackathon101").map((p) => ({
+  ...projects.map((p) => ({
     id: `project-${p.name}`,
     label: p.name,
     group: "Projects",
