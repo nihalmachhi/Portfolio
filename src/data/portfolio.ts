@@ -8,6 +8,16 @@ export type SocialLink = {
   label: string;
   href: string;
   handle: string;
+  previewImage?: string;
+};
+
+export type AboutPreviewLink = {
+  label: string;
+  href: string;
+  previewImage: string;
+  previewTitle: string;
+  previewSubtitle?: string;
+  external?: boolean;
 };
 
 export type Education = {
@@ -102,46 +112,88 @@ export const navItems: {
 
 export const socialLinks: SocialLink[] = [
   {
-    label: "GitHub",
-    href: "https://github.com/nihalmachhi2006",
+    label: "X",
+    href: "https://x.com/nihalmachhi2006",
     handle: "nihalmachhi2006",
+    previewImage: "https://unavatar.io/x/nihalmachhi2006",
   },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/nihalmachhi2006/",
     handle: "nihalmachhi2006",
+    previewImage: "https://unavatar.io/linkedin/nihalmachhi2006",
   },
   {
-    label: "X",
-    href: "https://x.com/nihalmachhi2006",
+    label: "GitHub",
+    href: "https://github.com/nihalmachhi2006",
     handle: "nihalmachhi2006",
+    previewImage: profileImage,
   },
   {
     label: "LeetCode",
     href: "https://leetcode.com/u/nihalmachhi2006/",
     handle: "nihalmachhi2006",
+    previewImage: "https://unavatar.io/leetcode/nihalmachhi2006",
   },
   {
     label: "CodeChef",
     href: "https://www.codechef.com/users/nihalmachhi",
     handle: "nihalmachhi",
+    previewImage: "https://unavatar.io/codechef/nihalmachhi",
   },
   {
     label: "Codeforces",
     href: "https://codeforces.com/profile/nihalmachhi",
     handle: "nihalmachhi",
+    previewImage: "https://unavatar.io/codeforces/nihalmachhi",
   },
   {
     label: "HackerRank",
     href: "https://www.hackerrank.com/profile/nihalmachhi2006",
     handle: "nihalmachhi2006",
+    previewImage: "https://unavatar.io/hackerrank/nihalmachhi2006",
   },
   {
     label: "Kaggle",
     href: "https://www.kaggle.com/nihalmachhi",
     handle: "nihalmachhi",
+    previewImage: "https://unavatar.io/kaggle/nihalmachhi",
   },
 ];
+
+export const aboutPreviewLinks = {
+  products: {
+    label: "minimal, fast products",
+    href: "https://github.com/nihalmachhi2006",
+    previewImage: profileImage,
+    previewTitle: "Projects & builds",
+    previewSubtitle: "@nihalmachhi2006 on GitHub",
+    external: true,
+  },
+  write: {
+    label: "write",
+    href: "/blogs",
+    previewImage: profileImage,
+    previewTitle: "Blog & notes",
+    previewSubtitle: "Engineering essays & learnings",
+  },
+  appliedAi: {
+    label: "applied AI",
+    href: "https://www.kaggle.com/nihalmachhi",
+    previewImage: "https://unavatar.io/kaggle/nihalmachhi",
+    previewTitle: "Applied AI",
+    previewSubtitle: "@nihalmachhi on Kaggle",
+    external: true,
+  },
+  sayHello: {
+    label: "Say hello",
+    href: "mailto:nihalmachhi11@gmail.com",
+    previewImage: profileImage,
+    previewTitle: heroProfile.name,
+    previewSubtitle: heroProfile.email,
+    external: true,
+  },
+} satisfies Record<string, AboutPreviewLink>;
 
 export const education: Education[] = [
   {

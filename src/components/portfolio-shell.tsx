@@ -4,18 +4,15 @@ import { useCallback, useEffect, useState } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import CommandPalette from "@/components/command-palette";
+import BackgroundGradient from "@/components/background-gradient";
 import { ThemeProvider } from "@/context/theme-context";
 import { playThemeSwitchSound } from "@/lib/utils";
-
-import PageTransition from "@/components/page-transition";
 
 function readStoredTheme(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
   const stored = localStorage.getItem("portfolio-theme");
   if (stored === "dark" || stored === "light") return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  return "light";
 }
 
 export default function PortfolioShell({
@@ -49,14 +46,15 @@ export default function PortfolioShell({
     <ThemeProvider theme={theme}>
       <div
         suppressHydrationWarning
-        className={`min-h-screen overflow-x-hidden ${theme === "dark" ? "bg-zinc-950 text-zinc-100" : "bg-zinc-50 text-zinc-900"}`}
+        className="relative min-h-screen overflow-x-hidden text-zinc-900 dark:text-zinc-100"
       >
+        <BackgroundGradient theme={theme} />
         <Navbar
           theme={theme}
           onToggleTheme={onToggleTheme}
           onOpenSearch={() => setSearchOpen(true)}
         />
-        <PageTransition>{children}</PageTransition>
+        {children}
         <Footer theme={theme} />
         <CommandPalette
           open={searchOpen}

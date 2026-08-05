@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
 import { heroProfile } from "@/data/portfolio";
 import SiteHeader from "@/components/site-header";
 import AboutSection from "@/components/about-section";
@@ -14,25 +13,7 @@ import BlogCard from "@/components/blog-card";
 import AchievementsCard from "@/components/achievements-card";
 import SkillsCard from "@/components/skills-card";
 import SectionDivider from "@/components/section-divider";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4 },
-  },
-};
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export default function PortfolioHome({
   theme,
@@ -46,71 +27,48 @@ export default function PortfolioHome({
   };
 
   return (
-    <motion.main
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="mx-auto flex w-full max-w-4xl flex-col gap-3 px-4 pb-10 pt-7 sm:px-6 lg:px-8 lg:pt-10"
-    >
-      <motion.div variants={itemVariants}>
+    <main className="mx-auto flex w-full max-w-4xl flex-col gap-3 px-4 pb-10 pt-7 sm:px-6 lg:px-8 lg:pt-10">
+      <ScrollReveal>
         <SiteHeader
           email={heroProfile.email}
           copied={copied}
           onCopy={handleCopy}
         />
-      </motion.div>
+      </ScrollReveal>
 
-      <motion.div variants={itemVariants}>
-        <AboutSection theme={theme} />
-      </motion.div>
+      <AboutSection theme={theme} />
 
       <SectionDivider />
 
-      <motion.div variants={itemVariants}>
-        <GitHubActivityCard theme={theme} />
-      </motion.div>
+      <GitHubActivityCard theme={theme} />
 
       <SectionDivider />
 
-      <motion.div variants={itemVariants}>
-        <EducationCard theme={theme} />
-      </motion.div>
+      <EducationCard theme={theme} />
 
       <SectionDivider />
 
-      <motion.div variants={itemVariants}>
-        <ExperienceCard theme={theme} />
-      </motion.div>
+      <ExperienceCard theme={theme} />
 
       <SectionDivider />
 
-      <motion.div variants={itemVariants}>
-        <ProjectsCard theme={theme} />
-      </motion.div>
+      <ProjectsCard theme={theme} />
 
       <SectionDivider />
 
-      <motion.div variants={itemVariants}>
-        <SkillsCard theme={theme} />
-      </motion.div>
+      <SkillsCard theme={theme} />
 
       <SectionDivider />
 
-      <motion.div variants={itemVariants}>
-        <AchievementsCard theme={theme} />
-      </motion.div>
+      <AchievementsCard theme={theme} />
 
       <SectionDivider />
 
-      <motion.div variants={itemVariants}>
-        <HackathonsCard theme={theme} />
-      </motion.div>
+      <HackathonsCard theme={theme} />
 
       <SectionDivider />
 
-      <motion.div variants={itemVariants}>
-        <BlogCard theme={theme} />
-      </motion.div>
-    </motion.main>
+      <BlogCard theme={theme} />
+    </main>
   );
 }

@@ -37,3 +37,18 @@ body {
 .dark ::selection {
   background: rgb(109 40 217 / 0.45);
 }
+
+.page-flip-scene {
+  perspective: 1600px;
+  perspective-origin: 50% 35%;
+}
+
+.page-flip-stack {
+  transform-style: preserve-3d;
+}
+
+.page-flip-panel {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}

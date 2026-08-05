@@ -1,107 +1,134 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "motion/react";
 import CardShell from "@/components/card-shell";
+import HoverPreviewLink from "@/components/hover-preview-link";
+import { aboutPreviewLinks, socialLinks } from "@/data/portfolio";
+
+const paragraphClass =
+  "text-[15px] sm:text-base lg:text-[17px] font-normal leading-[1.75] sm:leading-[1.8]";
 
 export default function AboutSection({
   theme,
 }: Readonly<{ theme: "light" | "dark" }>) {
   const isDark = theme === "dark";
+  const textColor = isDark ? "text-zinc-300" : "text-zinc-700";
+
+  const github = socialLinks.find((l) => l.label === "GitHub")!;
+  const linkedin = socialLinks.find((l) => l.label === "LinkedIn")!;
+  const xLink = socialLinks.find((l) => l.label === "X")!;
 
   return (
-    <CardShell id="about" theme={theme} className="py-6 px-5 sm:p-7">
-      <div
-        className={`flex flex-col gap-5 text-base sm:text-lg font-normal leading-relaxed ${
-          isDark ? "text-zinc-300" : "text-zinc-700"
-        }`}
-      >
-        {/* Paragraph 1 */}
-        <p>
+    <CardShell
+      id="about"
+      theme={theme}
+      className="border-none bg-transparent p-0 shadow-none backdrop-blur-none hover:border-transparent hover:bg-transparent hover:shadow-none sm:p-0"
+    >
+      <div className={`flex flex-col gap-6 sm:gap-7 ${textColor}`}>
+        <p className={paragraphClass}>
           I&apos;m a full-stack engineer and builder crafting{" "}
-          <span className="font-medium italic underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-500 hover:decoration-violet-500 hover:text-violet-500 transition-colors duration-200 cursor-default">
-            minimal, fast products
-          </span>{" "}
-          across web platforms and applied AI. Over the past few years, I&apos;ve focused
-          on designing beautiful, high-performance software that solves real-world problems.
+          <HoverPreviewLink
+            href={aboutPreviewLinks.products.href}
+            previewImage={aboutPreviewLinks.products.previewImage}
+            previewTitle={aboutPreviewLinks.products.previewTitle}
+            previewSubtitle={aboutPreviewLinks.products.previewSubtitle}
+            external={aboutPreviewLinks.products.external}
+          >
+            {aboutPreviewLinks.products.label}
+          </HoverPreviewLink>{" "}
+          across web platforms and applied AI. Over the past few years, I&apos;ve
+          focused on designing beautiful, high-performance software that solves
+          real-world problems.
         </p>
 
-        {/* Paragraph 2 */}
-        <p>
+        <p className={paragraphClass}>
           I regularly{" "}
-          <Link
-            href="/blogs"
-            className="font-medium italic underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-500 hover:decoration-violet-500 hover:text-violet-500 transition-colors duration-200"
+          <HoverPreviewLink
+            href={aboutPreviewLinks.write.href}
+            previewImage={aboutPreviewLinks.write.previewImage}
+            previewTitle={aboutPreviewLinks.write.previewTitle}
+            previewSubtitle={aboutPreviewLinks.write.previewSubtitle}
           >
-            write
-          </Link>{" "}
+            {aboutPreviewLinks.write.label}
+          </HoverPreviewLink>{" "}
           about my engineering experiments, system architecture, and hard-won
           lessons from my journey as a developer. These notes are my way of
-          thinking through challenges and sharing what I&apos;ve learned along the way.
+          thinking through challenges and sharing what I&apos;ve learned along the
+          way.
         </p>
 
-        {/* Paragraph 3 */}
-        <p>
+        <p className={paragraphClass}>
           When I&apos;m not coding, I love exploring{" "}
-          <span className="font-medium italic underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-500 hover:decoration-violet-500 hover:text-violet-500 transition-colors duration-200 cursor-default">
-            applied AI
-          </span>
-          , competing in hackathons, and contributing to open-source projects. There&apos;s
-          something special about building systems from the ground up.
+          <HoverPreviewLink
+            href={aboutPreviewLinks.appliedAi.href}
+            previewImage={aboutPreviewLinks.appliedAi.previewImage}
+            previewTitle={aboutPreviewLinks.appliedAi.previewTitle}
+            previewSubtitle={aboutPreviewLinks.appliedAi.previewSubtitle}
+            external={aboutPreviewLinks.appliedAi.external}
+          >
+            {aboutPreviewLinks.appliedAi.label}
+          </HoverPreviewLink>
+          , competing in hackathons, and contributing to open-source projects.
+          There&apos;s something special about building systems from the ground up.
         </p>
 
-        {/* Paragraph 4 */}
-        <p>
-          Always open to interesting conversations about software design, AI, and startup ideas.{" "}
-          <a
-            href="mailto:nihalmachhi11@gmail.com"
-            className="font-medium italic underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-500 hover:decoration-violet-500 hover:text-violet-500 transition-colors duration-200"
+        <p className={paragraphClass}>
+          Always open to interesting conversations about software design, AI, and
+          startup ideas.{" "}
+          <HoverPreviewLink
+            href={aboutPreviewLinks.sayHello.href}
+            previewImage={aboutPreviewLinks.sayHello.previewImage}
+            previewTitle={aboutPreviewLinks.sayHello.previewTitle}
+            previewSubtitle={aboutPreviewLinks.sayHello.previewSubtitle}
+            external
           >
-            Say hello
-          </a>{" "}
+            {aboutPreviewLinks.sayHello.label}
+          </HoverPreviewLink>{" "}
           or follow me on{" "}
-          <Link
-            href="https://github.com/nihalmachhi2006"
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium italic underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-500 hover:decoration-violet-500 hover:text-violet-500 transition-colors duration-200"
+          <HoverPreviewLink
+            href={github.href}
+            previewImage={github.previewImage ?? github.href}
+            previewTitle="GitHub"
+            previewSubtitle={`@${github.handle}`}
+            external
           >
             GitHub
-          </Link>
+          </HoverPreviewLink>
           ,{" "}
-          <Link
-            href="https://www.linkedin.com/in/nihalmachhi2006/"
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium italic underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-500 hover:decoration-violet-500 hover:text-violet-500 transition-colors duration-200"
+          <HoverPreviewLink
+            href={linkedin.href}
+            previewImage={linkedin.previewImage ?? linkedin.href}
+            previewTitle="LinkedIn"
+            previewSubtitle={`@${linkedin.handle}`}
+            external
           >
             LinkedIn
-          </Link>
+          </HoverPreviewLink>
           , or{" "}
-          <Link
-            href="https://x.com/nihalmachhi2006"
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium italic underline underline-offset-4 decoration-zinc-400 dark:decoration-zinc-500 hover:decoration-violet-500 hover:text-violet-500 transition-colors duration-200"
+          <HoverPreviewLink
+            href={xLink.href}
+            previewImage={xLink.previewImage ?? xLink.href}
+            previewTitle="X"
+            previewSubtitle={`@${xLink.handle}`}
+            external
           >
             X
-          </Link>
+          </HoverPreviewLink>
           .
         </p>
 
-        {/* Three Colored Dots (Traffic light style matching Image 1) */}
-        <div className="mt-4 flex items-center justify-center gap-2.5 pt-2">
+        <div className="flex items-center justify-center gap-2 pt-1 sm:pt-2">
           <motion.span
-            whileHover={{ scale: 1.4 }}
-            className="h-2.5 w-2.5 rounded-full bg-orange-500 shadow-sm"
+            whileHover={{ scale: 1.35 }}
+            className="h-2.5 w-2.5 rounded-full bg-[#ff5f57] shadow-sm"
           />
           <motion.span
-            whileHover={{ scale: 1.4 }}
-            className="h-2.5 w-2.5 rounded-full bg-amber-400 shadow-sm"
+            whileHover={{ scale: 1.35 }}
+            className="h-2.5 w-2.5 rounded-full bg-[#febc2e] shadow-sm"
           />
           <motion.span
-            whileHover={{ scale: 1.4 }}
-            className="h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-sm"
+            whileHover={{ scale: 1.35 }}
+            className="h-2.5 w-2.5 rounded-full bg-[#28c840] shadow-sm"
           />
         </div>
       </div>
