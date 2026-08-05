@@ -91,7 +91,7 @@ export const heroProfile = {
   handle: "@nihalmachhi2006",
   role: "Software Engineer",
   descriptor: "polymath",
-  tagline: "Love to build cool stuff, content creator & polymath.",
+  tagline: "Love to build cool stuff, Engineer & polymath.",
   email: "nihalmachhi11@gmail.com",
   phone: "+91 87803-39304",
   about:
