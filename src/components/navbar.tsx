@@ -36,7 +36,7 @@ export default function Navbar({
       )}
     >
       <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 py-1">
-        <nav className="flex items-center gap-3 overflow-x-auto text-sm text-zinc-500 sm:gap-6 dark:text-zinc-400">
+        <nav className="flex items-center gap-3 overflow-x-auto text-sm text-zinc-500 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6 dark:text-zinc-400">
           {navItems.map((item) => (
             <Link
               key={item.label}
