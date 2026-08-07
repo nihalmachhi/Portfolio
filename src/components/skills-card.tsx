@@ -27,7 +27,7 @@ const iconColors: Record<string, string> = {
 
 export default function SkillsCard({ theme }: Readonly<{ theme: "light" | "dark" }>) {
   return (
-    <CardShell theme={theme}>
+    <CardShell id="skills" theme={theme}>
       <SectionLabel theme={theme}>Skills</SectionLabel>
       <h2 className="mt-3 text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Tools I work with</h2>
       <div className="mt-5 space-y-5">

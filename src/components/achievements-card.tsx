@@ -8,7 +8,7 @@ export default function AchievementsCard({
   const isDark = theme === "dark";
 
   return (
-    <CardShell theme={theme}>
+    <CardShell id="achievements" theme={theme}>
       <SectionLabel theme={theme}>Achievements</SectionLabel>
       <ul className="mt-3 space-y-2">
         {achievements.map((item) => (
