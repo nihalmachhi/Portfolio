@@ -88,12 +88,7 @@ export default function SiteHeader({
   return (
     <section className="flex flex-col pt-2 pb-4 sm:pt-4 sm:pb-6">
       <div className="flex items-start gap-3.5 sm:items-center sm:gap-5">
-        <motion.div
-          initial={{ scale: 0.92, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-          className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 sm:h-20 sm:w-20 dark:border-white/10 dark:bg-zinc-800"
-        >
+        <div className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 sm:h-20 sm:w-20 dark:border-white/10 dark:bg-zinc-800">
           <Image
             src={profilePhoto}
             alt={heroProfile.name}
@@ -102,17 +97,12 @@ export default function SiteHeader({
             sizes="(max-width: 640px) 72px, 80px"
             className="object-cover"
           />
-        </motion.div>
+        </div>
 
         <div className="min-w-0 flex-1 pt-0.5">
-          <motion.h1
-            initial={{ y: -4, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="text-xl font-bold tracking-tight text-zinc-900 sm:text-2xl lg:text-[1.75rem] dark:text-zinc-50"
-          >
+          <h1 className="text-xl font-bold tracking-tight text-zinc-900 sm:text-2xl lg:text-[1.75rem] dark:text-zinc-50">
             {heroProfile.name}
-          </motion.h1>
+          </h1>
 
           <div className="mt-1 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[13px] sm:text-sm text-zinc-500 dark:text-zinc-400">
             <span>{heroProfile.role}</span>
