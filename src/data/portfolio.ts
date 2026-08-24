@@ -272,25 +272,25 @@ export const projects: Project[] = [
       "Logged every allow/block decision with reasoning to a persistent SQLite audit trail, validated by test suite",
     ],
   },
-  {
-    name: "Portfolio",
-    stack: "Next.js, TypeScript, Tailwind CSS, Motion",
-    status: "In Progress",
-    summary:
-      "Minimal personal portfolio with theme toggle, command palette search, and animated sections.",
-    bullets: [
-      "Responsive layout with light/dark themes and GitHub contribution chart.",
-      "Command palette navigation via Ctrl+K across pages and sections.",
-    ],
-  },
-  {
-    name: "Hackathon101",
-    stack: "Next.js, TypeScript",
-    status: "Pending",
-    summary:
-      "A curated hub for hackathon prep — resources, timelines, and project starters.",
-    bullets: ["Coming soon — templates and checklists for 24–48hr sprints."],
-  },
+  // {
+  //   name: "Portfolio",
+  //   stack: "Next.js, TypeScript, Tailwind CSS, Motion",
+  //   status: "In Progress",
+  //   summary:
+  //     "Minimal personal portfolio with theme toggle, command palette search, and animated sections.",
+  //   bullets: [
+  //     "Responsive layout with light/dark themes and GitHub contribution chart.",
+  //     "Command palette navigation via Ctrl+K across pages and sections.",
+  //   ],
+  // },
+  // {
+  //   name: "Hackathon101",
+  //   stack: "Next.js, TypeScript",
+  //   status: "Pending",
+  //   summary:
+  //     "A curated hub for hackathon prep — resources, timelines, and project starters.",
+  //   bullets: ["Coming soon — templates and checklists for 24–48hr sprints."],
+  // },
 ];
 
 export const hackathons: Hackathon[] = [
