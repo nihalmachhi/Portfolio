@@ -318,7 +318,6 @@ export const hackathons: Hackathon[] = [
   {
     name: "HackerRank Orchestrate",
     org: "HackerRank",
-    note: "June 2026",
   },
 ];
 
