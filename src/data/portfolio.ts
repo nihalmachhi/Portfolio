@@ -261,15 +261,15 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "TrackitNow",
-    stack: "React, Vite, FastAPI, PostgreSQL, Supabase, Chart.js, Cloudinary, JWT",
+    name: "AgentGate",
+    stack: "Python, FastAPI, SQLite, Pydantic, Groq API, Razorpay API, Pytest",
     status: "Done",
     summary:
-      "Habit tracker with 12-month heatmap, secure REST endpoints, and realtime chat plus friends system.",
+      "A Trust Gate for AI Commerce: Every Agent Payment, Inspected Before It Spends",
     bullets: [
-      "Built full-stack habit tracker with 15+ tasks across 4 categories.",
-      "Engineered 12-month contribution heatmap using Chart.js and custom aggregation queries.",
-      "Secured 10+ REST endpoints with JWT auth and bcrypt against XSS/SQL injection.",
+      "Built trust-and-inspection gate for AI agent commerce, built for Razorpay's AI Buildathon",
+      "Enforced per-session spend caps, quantity limits, and rate limits before requests reach Razorpay's API",
+      "Logged every allow/block decision with reasoning to a persistent SQLite audit trail, validated by test suite",
     ],
   },
   {
