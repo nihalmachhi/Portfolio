@@ -82,7 +82,7 @@ export type SearchItem = {
   href: string;
 };
 
-export const githubUsername = "nihalmachhi2006";
+export const githubUsername = "nihalmachhi";
 export const profileImage =
   "https://avatars.githubusercontent.com/u/183213542?v=4";
 
@@ -120,7 +120,7 @@ export const socialLinks: SocialLink[] = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/nihalmachhi2006/",
-    handle: "nihalmachhi2006",
+    handle: "nihalmachhi",
     previewImage: "https://unavatar.io/linkedin/nihalmachhi2006",
   },
   {
