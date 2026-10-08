@@ -82,7 +82,7 @@ export type SearchItem = {
   href: string;
 };
 
-export const githubUsername = "nihalmachhi2006";
+export const githubUsername = "nihalmachhi";
 export const profileImage =
   "https://avatars.githubusercontent.com/u/183213542?v=4";
 
@@ -119,14 +119,14 @@ export const socialLinks: SocialLink[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/nihalmachhi2006/",
-    handle: "nihalmachhi2006",
-    previewImage: "https://unavatar.io/linkedin/nihalmachhi2006",
+    href: "https://www.linkedin.com/in/nihalmachhi/",
+    handle: "nihalmachhi",
+    previewImage: "https://unavatar.io/linkedin/nihalmachhi",
   },
   {
     label: "GitHub",
-    href: "https://github.com/nihalmachhi2006",
-    handle: "nihalmachhi2006",
+    href: "https://github.com/nihalmachhi",
+    handle: "nihalmachhi",
     previewImage: profileImage,
   },
   {
@@ -164,10 +164,10 @@ export const socialLinks: SocialLink[] = [
 export const aboutPreviewLinks = {
   products: {
     label: "minimal, fast products",
-    href: "https://github.com/nihalmachhi2006",
+    href: "https://github.com/nihalmachhi",
     previewImage: profileImage,
     previewTitle: "Projects & builds",
-    previewSubtitle: "@nihalmachhi2006 on GitHub",
+    previewSubtitle: "@nihalmachhi on GitHub",
     external: true,
   },
   write: {
