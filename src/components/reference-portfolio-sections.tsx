@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { referenceExperience, referencePosts, referenceProjects } from "@/data/reference-portfolio";
+import ProjectFlowDiagram, { type ProjectDiagramKind } from "@/components/project-flow-diagram";
 
 export function DotDivider() {
   return (
@@ -72,17 +73,74 @@ export function HomeTab() {
   );
 }
 
+const projectDetails: Record<string, {
+  description: string;
+  kind: ProjectDiagramKind;
+  stats: [string, string][];
+  href: string;
+}> = {
+  "DPI-Engine": {
+    description: "A multithreaded engine that reads PCAP traffic, identifies apps in each flow, then allows or blocks traffic by rule.",
+    kind: "dpi",
+    stats: [["10K+", "packets / sec"], ["50+", "PCAP flows"], ["34", "tests"]],
+    href: "https://github.com/nihalmachhi/Deep-Packet-Inspection-DPI-Engine",
+  },
+  MeshPay: {
+    description: "UPI-style payments that work offline. Devices relay encrypted packets until one reaches a bridge that records the payment.",
+    kind: "meshpay",
+    stats: [["5", "device mesh"], ["100%", "replays blocked"], ["20+", "tests"]],
+    href: "https://github.com/nihalmachhi/MeshPay",
+  },
+  AgentGate: {
+    description: "A policy gate between an LLM shopping agent and Razorpay. Every API call is checked, and every decision is written to an audit log.",
+    kind: "agentgate",
+    stats: [["3", "policies"], ["2", "recovery tools"], ["6", "audit fields"]],
+    href: "https://github.com/nihalmachhi",
+  },
+  OpenHunt: {
+    description: "Collects public job postings, filters out noise, optionally scores matches with an LLM, and builds a weekday digest for review.",
+    kind: "openhunt",
+    stats: [["3", "ATS APIs"], ["0", "manual first pass"]],
+    href: "https://github.com/nihalmachhi",
+  },
+};
+
+const projectDisplayOrder = ["DPI-Engine", "MeshPay", "AgentGate", "OpenHunt"];
+
 export function ProjectsTab() {
+  const projects = projectDisplayOrder
+    .map((name) => referenceProjects.find((project) => project.name === name))
+    .filter((project): project is (typeof referenceProjects)[number] => Boolean(project));
+
   return (
-    <section className="ref-page" aria-label="Projects">
-      <p className="ref-intro">Things I&apos;ve built to learn, to ship for clients, or just because I got curious. Some are polished, others are still moving.</p>
-      {referenceProjects.map((project) => (
-        <article className="ref-project" key={project.name}>
-          <h2><span>{project.name}</span><time className="ref-date">{project.period}</time></h2>
-          <p className="ref-tech">{project.stack.join(" · ")}</p>
-          <ul>{project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
-        </article>
-      ))}
+    <section className="ref-page ref-projects-page" aria-label="Projects">
+      <h2 className="ref-projects-title">Things I&apos;ve <i>built</i></h2>
+      <p className="ref-projects-intro">Four projects, drawn the way they actually work. Each diagram shows how data moves through the system.</p>
+      {projects.map((project, index) => {
+        const details = projectDetails[project.name];
+        return (
+          <article className="ref-project-card" key={project.name}>
+            {index > 0 && <DotDivider />}
+            <div className="ref-project-heading">
+              <h3>{project.name}</h3>
+              <time className="ref-date">{project.period.replace(".", ". ")}</time>
+            </div>
+            <p className="ref-project-summary">{details.description}</p>
+            <ProjectFlowDiagram kind={details.kind} label={project.name} />
+            <div className="ref-project-stats">
+              {details.stats.map(([value, label]) => (
+                <div className="ref-project-stat" key={label}>
+                  <b>{value}</b><span>{label}</span>
+                </div>
+              ))}
+            </div>
+            <p className="ref-project-stack">{project.stack.join(" · ")}</p>
+            <a className="ref-project-link" href={details.href} target="_blank" rel="noreferrer">View on GitHub →</a>
+          </article>
+        );
+      })}
+      <DotDivider />
+      <p className="ref-projects-more">More on <a href="https://github.com/nihalmachhi" target="_blank" rel="noreferrer">GitHub</a></p>
     </section>
   );
 }
