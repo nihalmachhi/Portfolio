@@ -28,11 +28,11 @@ function DpiFlow() {
       <FlowBox x={10} y={55} width={80} height={40} title="PCAP" />
       <FlowBox x={130} y={55} width={110} height={40} title="Parser" detail="SNI · Host · DNS" />
       <FlowBox x={280} y={55} width={90} height={40} title="Flows" detail="50+ tracked" />
-      <FlowBox x={410} y={55} width={80} height={40} title="Rules" detail="app · IP · domain" />
+      <FlowBox x={390} y={55} width={110} height={40} title="Rules" detail="app · IP · domain" />
       <FlowBox x={540} y={18} width={90} height={36} title="ALLOW" tone="allow" />
       <FlowBox x={540} y={96} width={90} height={36} title="DROP" tone="block" />
-      <FlowLine d="M90 75H130M240 75H280M370 75H410M490 68L540 38" tone="allow" />
-      <FlowLine d="M490 82L540 114" tone="block" />
+      <FlowLine d="M90 75H130M240 75H280M370 75H390M500 68L540 38" tone="allow" />
+      <FlowLine d="M500 82L540 114" tone="block" />
     </>
   );
 }
