@@ -391,3 +391,34 @@ body {
   .project-flow-scroll { margin-right: -4px; }
 }
 .ref-project-demo { margin-left: 14px; }
+
+/* Writing routes use the same paper-like layout and theme as the portfolio. */
+.ref-route-nav { margin-bottom: 36px; }
+.ref-route-title { margin: 0 0 8px; color: var(--ref-fg); font-size: 26px; font-weight: 500; line-height: 1.35; overflow-wrap: anywhere; }
+.ref-route-title i { font-family: var(--font-instrument-serif), Georgia, serif; font-size: 1.15em; font-weight: 400; }
+.ref-route-intro { margin: 0 0 22px; color: var(--ref-muted); }
+.ref-post-list { display: flex; flex-direction: column; }
+.ref-post-link { display: grid; grid-template-columns: minmax(0, 1fr) max-content; gap: 16px; padding: 16px 0; border-top: 1px solid var(--ref-line); color: inherit; text-decoration: none; }
+.ref-post-main { display: flex; min-width: 0; flex-direction: column; }
+.ref-post-main b { font-weight: 500; line-height: 1.5; }
+.ref-post-blurb { margin-top: 5px; color: var(--ref-muted); line-height: 1.65; }
+.ref-post-meta, .ref-article-meta { margin-top: 8px; color: var(--ref-muted); font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 12px; }
+.ref-post-link:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.ref-post-link > .ref-date { padding-top: 2px; white-space: nowrap; }
+.ref-article { min-width: 0; }
+.ref-article-back { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 15px; color: var(--ref-muted); text-decoration: none; }
+.ref-article-back:hover { color: var(--ref-fg); }
+.ref-article-meta { margin: 0 0 8px; }
+.ref-article-tags { display: flex; flex-wrap: wrap; gap: 7px 12px; margin: 14px 0 22px; color: var(--ref-muted); font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 12px; }
+.ref-article-body p { margin: 0 0 18px; line-height: 1.9; text-align: left; }
+.ref-more-reading { margin-top: 38px; }
+.ref-more-reading h3 { margin: 0 0 10px; color: var(--ref-muted); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.ref-more-reading > div { border-top: 1px solid var(--ref-line); }
+.ref-more-reading-link { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--ref-line); color: var(--ref-fg); text-decoration: none; }
+.ref-more-reading-link span { min-width: 0; overflow-wrap: anywhere; }
+.ref-more-reading-link svg { flex: none; color: var(--ref-muted); }
+.ref-more-reading-link:hover span { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 520px) {
+  .ref-post-link { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .ref-post-link > .ref-date { order: -1; font-size: 12px; }
+}
