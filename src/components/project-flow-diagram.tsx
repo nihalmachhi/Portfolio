@@ -9,11 +9,27 @@ type FlowBoxProps = {
 };
 
 function FlowBox({ x, y, width, height, title, detail, tone }: FlowBoxProps) {
+  const availableDetailWidth = width - 12;
+  const estimatedDetailWidth = (detail?.length ?? 0) * 6.3;
+  const fittedDetailWidth = estimatedDetailWidth > availableDetailWidth
+    ? availableDetailWidth
+    : undefined;
+
   return (
     <g>
       <rect className={`project-flow-box${tone ? ` is-${tone}` : ""}`} x={x} y={y} width={width} height={height} rx="8" />
       <text className="project-flow-title" x={x + width / 2} y={y + height / 2 + (detail ? -3 : 4)}>{title}</text>
-      {detail && <text className="project-flow-detail" x={x + width / 2} y={y + height / 2 + 13}>{detail}</text>}
+      {detail && (
+        <text
+          className="project-flow-detail"
+          x={x + width / 2}
+          y={y + height / 2 + 13}
+          textLength={fittedDetailWidth}
+          lengthAdjust={fittedDetailWidth ? "spacingAndGlyphs" : undefined}
+        >
+          {detail}
+        </text>
+      )}
     </g>
   );
 }
