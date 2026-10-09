@@ -40,11 +40,16 @@ export default function FavoriteDropdown<T extends string>({
   }, [open]);
 
   const moveFocus = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
-    event.preventDefault();
     const optionsInMenu = Array.from(
       event.currentTarget.querySelectorAll<HTMLButtonElement>("[role='menuitemradio']"),
     );
+    if (event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      optionsInMenu[event.key === "Home" ? 0 : optionsInMenu.length - 1]?.focus();
+      return;
+    }
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+    event.preventDefault();
     const currentIndex = optionsInMenu.indexOf(document.activeElement as HTMLButtonElement);
     const step = event.key === "ArrowDown" ? 1 : -1;
     const nextIndex = currentIndex < 0
