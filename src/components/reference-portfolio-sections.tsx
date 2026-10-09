@@ -78,6 +78,7 @@ const projectDetails: Record<string, {
   kind: ProjectDiagramKind;
   stats: [string, string][];
   href: string;
+  demo?: string;
 }> = {
   "DPI-Engine": {
     description: "A multithreaded engine that reads PCAP traffic, identifies apps in each flow, then allows or blocks traffic by rule.",
@@ -103,19 +104,34 @@ const projectDetails: Record<string, {
     stats: [["3", "ATS APIs"], ["0", "manual first pass"]],
     href: "https://github.com/nihalmachhi",
   },
+  TrackitNow: {
+    description: "A task and habit tracker where completed tasks build streaks, points, badges, and a GitHub-style activity graph, with friends and chat alongside.",
+    kind: "trackitnow",
+    stats: [["7", "tables"], ["6", "API areas"], ["Live", "demo on Vercel"]],
+    href: "https://github.com/nihalmachhi/TrackitNow",
+    demo: "https://trackitnow.vercel.app",
+  },
 };
 
-const projectDisplayOrder = ["DPI-Engine", "MeshPay", "AgentGate", "OpenHunt"];
+const projectDisplayOrder = ["DPI-Engine", "MeshPay", "AgentGate", "OpenHunt", "TrackitNow"];
+const trackItNowProject = {
+  name: "TrackitNow",
+  period: "",
+  stack: ["React", "TypeScript", "FastAPI", "PostgreSQL", "Tailwind"],
+  bullets: [],
+};
 
 export function ProjectsTab() {
   const projects = projectDisplayOrder
-    .map((name) => referenceProjects.find((project) => project.name === name))
+    .map((name) => name === "TrackitNow"
+      ? trackItNowProject
+      : referenceProjects.find((project) => project.name === name))
     .filter((project): project is (typeof referenceProjects)[number] => Boolean(project));
 
   return (
     <section className="ref-page ref-projects-page" aria-label="Projects">
       <h2 className="ref-projects-title">Things I&apos;ve <i>built</i></h2>
-      <p className="ref-projects-intro">Four projects, drawn the way they actually work. Each diagram shows how data moves through the system.</p>
+      <p className="ref-projects-intro">Five projects, drawn the way they actually work. Each diagram shows how data moves through the system.</p>
       {projects.map((project, index) => {
         const details = projectDetails[project.name];
         return (
@@ -123,7 +139,7 @@ export function ProjectsTab() {
             {index > 0 && <DotDivider />}
             <div className="ref-project-heading">
               <h3>{project.name}</h3>
-              <time className="ref-date">{project.period.replace(".", ". ")}</time>
+              {project.period && <time className="ref-date">{project.period.replace(".", ". ")}</time>}
             </div>
             <p className="ref-project-summary">{details.description}</p>
             <ProjectFlowDiagram kind={details.kind} label={project.name} />
@@ -136,6 +152,7 @@ export function ProjectsTab() {
             </div>
             <p className="ref-project-stack">{project.stack.join(" · ")}</p>
             <a className="ref-project-link" href={details.href} target="_blank" rel="noreferrer">View on GitHub →</a>
+            {details.demo && <a className="ref-project-link ref-project-demo" href={details.demo} target="_blank" rel="noreferrer">Live demo ↗</a>}
           </article>
         );
       })}

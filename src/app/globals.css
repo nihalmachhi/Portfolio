@@ -390,3 +390,4 @@ body {
   .ref-project-heading { flex-direction: column; gap: 0; }
   .project-flow-scroll { margin-right: -4px; }
 }
+.ref-project-demo { margin-left: 14px; }

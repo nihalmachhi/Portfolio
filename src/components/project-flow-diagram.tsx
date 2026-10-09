@@ -97,7 +97,25 @@ function OpenHuntFlow() {
   );
 }
 
-export type ProjectDiagramKind = "dpi" | "meshpay" | "agentgate" | "openhunt";
+function TrackitNowFlow() {
+  return (
+    <>
+      <FlowBox x={10} y={55} width={90} height={40} title="React SPA" detail="Vite" />
+      <FlowBox x={140} y={55} width={100} height={40} title="FastAPI" detail="JWT · Argon2" />
+      <FlowBox x={140} y={112} width={100} height={32} title="Cloudinary" detail="photos" />
+      <FlowBox x={280} y={55} width={90} height={40} title="Task done" detail="user_tasks" />
+      <FlowBox x={410} y={55} width={90} height={40} title="Session" detail="1 row / day" />
+      <FlowBox x={540} y={8} width={90} height={32} title="Streak" tone="allow" />
+      <FlowBox x={540} y={62} width={90} height={32} title="Heatmap" tone="allow" />
+      <FlowBox x={540} y={116} width={90} height={32} title="Badges" tone="allow" />
+      <FlowLine d="M100 75H140M240 75H280M370 75H410" />
+      <FlowLine d="M500 68L540 24M500 75H540M500 82L540 132" tone="allow" />
+      <FlowLine d="M100 88L140 128" />
+    </>
+  );
+}
+
+export type ProjectDiagramKind = "dpi" | "meshpay" | "agentgate" | "openhunt" | "trackitnow";
 
 export default function ProjectFlowDiagram({
   kind,
@@ -110,6 +128,7 @@ export default function ProjectFlowDiagram({
         {kind === "meshpay" && <MeshFlow />}
         {kind === "agentgate" && <AgentGateFlow />}
         {kind === "openhunt" && <OpenHuntFlow />}
+        {kind === "trackitnow" && <TrackitNowFlow />}
       </svg>
     </div>
   );
