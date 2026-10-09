@@ -107,7 +107,7 @@ const projectDetails: Record<string, {
   TrackitNow: {
     description: "A task and habit tracker where completed tasks build streaks, points, badges, and a GitHub-style activity graph, with friends and chat alongside.",
     kind: "trackitnow",
-    stats: [["7", "tables"], ["6", "API areas"], ["Live", "demo on Vercel"]],
+    stats: [["7", "tables"], ["6", "API areas"], ["Streaks", "from completed tasks"]],
     href: "https://github.com/nihalmachhi/TrackitNow",
     demo: "https://trackitnow.vercel.app",
   },
