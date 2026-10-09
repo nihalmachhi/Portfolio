@@ -104,7 +104,7 @@ export const navItems: {
   comingSoon?: boolean;
 }[] = [
   { label: "Home", href: "/" },
-  { label: "Blogs", href: "/blogs" },
+  { label: "Blogs", href: "/?tab=writing" },
   { label: "Inspiration", href: "/inspiration" },
   { label: "Hackathons", href: "/hackathons" },
   { label: "Play", href: "/play", comingSoon: true },
@@ -172,7 +172,7 @@ export const aboutPreviewLinks = {
   },
   write: {
     label: "write",
-    href: "/blogs",
+    href: "/?tab=writing",
     previewImage: profileImage,
     previewTitle: "Blog & notes",
     previewSubtitle: "Engineering essays & learnings",
@@ -504,7 +504,7 @@ export function getBlogPost(slug: string) {
 
 export const searchItems: SearchItem[] = [
   { id: "home", label: "Home", group: "Pages", href: "/" },
-  { id: "blogs", label: "Blogs", group: "Pages", href: "/blogs" },
+  { id: "blogs", label: "Blogs", group: "Pages", href: "/?tab=writing" },
   {
     id: "inspiration",
     label: "Inspiration",

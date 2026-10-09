@@ -1,5 +1,5 @@
-import BlogsPageContent from "@/components/pages/blogs-page";
+import { redirect } from "next/navigation";
 
 export default function BlogsPage() {
-  return <BlogsPageContent />;
+  redirect("/?tab=writing");
 }

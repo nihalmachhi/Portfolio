@@ -15,12 +15,16 @@ import {
 import { FavoritesTab } from "@/components/favorites-page";
 import { referenceSocials } from "@/data/reference-portfolio";
 
-export default function ReferencePortfolio() {
-  const [tab, setTab] = useState<PortfolioTab>("home");
+export default function ReferencePortfolio({ initialTab = "home" }: Readonly<{ initialTab?: PortfolioTab }>) {
+  const [tab, setTab] = useState<PortfolioTab>(initialTab);
   const reduceMotion = useReducedMotion();
 
   const changeTab = (nextTab: PortfolioTab) => {
     setTab(nextTab);
+    const url = new URL(window.location.href);
+    if (nextTab === "home") url.searchParams.delete("tab");
+    else url.searchParams.set("tab", nextTab);
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
     window.scrollTo({ top: 0, behavior: "instant" });
   };
 

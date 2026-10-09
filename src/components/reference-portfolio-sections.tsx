@@ -68,7 +68,6 @@ export function HomeTab() {
       <DotDivider />
       <SectionLabel>Writing</SectionLabel>
       <WritingRows />
-      <Link className="ref-more" href="/blogs">View all →</Link>
     </section>
   );
 }

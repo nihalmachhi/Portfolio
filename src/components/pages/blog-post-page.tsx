@@ -9,7 +9,7 @@ export default function BlogPostContent({ post }: Readonly<{ post: BlogPost }>) 
     <main className="ref-wrap">
       <WritingRouteHeader currentPage="article" />
       <article className="ref-article">
-        <Link href="/blogs" className="ref-article-back">
+        <Link href="/?tab=writing" className="ref-article-back">
           <ArrowLeft size={15} aria-hidden="true" />
           All writing
         </Link>

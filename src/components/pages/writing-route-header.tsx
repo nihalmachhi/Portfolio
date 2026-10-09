@@ -19,7 +19,7 @@ export default function WritingRouteHeader({
       <h1>Nihal Machhi <i>aka</i> @nihalmachhi</h1>
       <nav className="ref-nav ref-route-nav" aria-label="Portfolio pages">
         <Link className="ref-tab" href="/">Home</Link>
-        <Link className={currentPage === "writing" ? "ref-tab is-active" : "ref-tab"} href="/blogs">Writing</Link>
+        <Link className={currentPage === "writing" ? "ref-tab is-active" : "ref-tab"} href="/?tab=writing">Writing</Link>
         <button
           type="button"
           className="ref-theme-toggle"
