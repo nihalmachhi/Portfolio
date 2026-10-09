@@ -1,9 +1,5 @@
-"use client";
-
-import PortfolioHome from "@/components/portfolio-home";
-import { useTheme } from "@/context/theme-context";
+import ReferencePortfolio from "@/components/reference-portfolio";
 
 export default function Home() {
-  const { theme } = useTheme();
-  return <PortfolioHome theme={theme} />;
+  return <ReferencePortfolio />;
 }
