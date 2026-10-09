@@ -29,13 +29,19 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+  background-color: var(--background);
+  transition: background-color 320ms ease;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  color-scheme: light dark;
   transition: background-color 320ms ease, color 320ms ease;
 }
 
