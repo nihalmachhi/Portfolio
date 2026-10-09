@@ -5,6 +5,16 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Nihal Machhi aka @nihalmachhi",
   description: "Software engineer and CSE (AI/ML) student building practical web and AI products.",
+  openGraph: {
+    title: "Nihal Machhi aka @nihalmachhi",
+    description: "Software engineer and CSE (AI/ML) student building practical web and AI products.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Nihal Machhi aka @nihalmachhi",
+    description: "Software engineer and CSE (AI/ML) student building practical web and AI products.",
+  },
 };
 
 export default function RootLayout({
