@@ -422,3 +422,12 @@ body {
   .ref-post-link { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .ref-post-link > .ref-date { order: -1; font-size: 12px; }
 }
+.ref-post-overlay { position: fixed; z-index: 60; inset: 0; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgb(0 0 0 / .42); backdrop-filter: blur(4px); }
+.ref-post-modal { position: relative; width: min(100%, 680px); min-height: 0; max-height: calc(100dvh - 40px); margin: 0; padding: 28px 24px 32px; overflow-y: auto; border: 1px solid var(--ref-line); border-radius: 12px; background: var(--ref-bg); color: var(--ref-fg); box-shadow: 0 24px 80px rgb(0 0 0 / .2); }
+.ref-modal-topbar { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+.ref-modal-close { display: inline-flex; align-items: center; gap: 7px; padding: 4px 0; border: 0; background: transparent; color: var(--ref-muted); cursor: pointer; font: inherit; }
+.ref-modal-close:hover { color: var(--ref-fg); }
+@media (max-width: 520px) {
+  .ref-post-overlay { align-items: flex-end; padding: 10px; }
+  .ref-post-modal { max-height: calc(100dvh - 20px); padding: 22px 18px 28px; border-radius: 12px; }
+}
