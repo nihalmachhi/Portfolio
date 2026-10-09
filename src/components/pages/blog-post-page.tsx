@@ -11,7 +11,7 @@ export default function BlogPostContent({ post }: Readonly<{ post: BlogPost }>) 
       <article className="ref-article">
         <Link href="/?tab=writing" className="ref-article-back">
           <ArrowLeft size={15} aria-hidden="true" />
-          All writing
+          Back to writing
         </Link>
         <BlogPostArticle post={post} />
       </article>
